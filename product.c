@@ -3,6 +3,33 @@
 #include <stdlib.h>
 #include "product.h"
 
+void searchProduct(Product *p[], int count) { // 제품을 검색하는 함수; 이름, 배송방법, 설명을 검색할 수 있다.
+    int* scnt = 0;
+    char search[20];
+    int kind;
+    int del;
+
+    printf("검색할 항목은(1:이름, 2:배송방법, 3:설명)? ");  // 어떤 항목에서 검색할 지 묻기
+    scanf("%d", &kind);
+
+    if(kind == 1) { // 제품 이름 검색
+        printf("검색할 제품이름은? ");
+        scanf("%s", search);
+
+        printf("================================\n");
+        for(int i=0; i<count; i++) {
+            if(p[i] == NULL) continue;
+            if(strstr(p[i]->name, search)) {
+                printf("%2d ", i+1);
+                readProduct(*p[i]);
+                scnt++;
+            }
+        }
+    }
+    if(scnt == 0) printf("=> 검색된 데이터 없음!");
+    printf("\n");
+}
+
 int loadData(Product *p[]) {    // FILE에 저장된 제품 목록을 불러오는 함수; txt파일이 없을 경우 '파일 없음' 출력
     int i = 0;
     FILE *fp;
