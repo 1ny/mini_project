@@ -2,6 +2,39 @@
 #include <string.h>
 #include <stdlib.h>
 #include "product.h"
+
+int loadData(Product *p[]) {    // FILE에 저장된 제품 목록을 불러오는 함수; txt파일이 없을 경우 '파일 없음' 출력
+    int i = 0;
+    FILE *fp;
+
+    if((fp = fopen("product.txt", "rt"))) {
+        for(; i<100; i++) {
+            if(feof(fp)) {
+                break;
+            }
+            p[i] = (Product*)malloc(sizeof(Product));
+            fgets(p[i]->name, 100, fp);
+            p[i]->name[strlen(p[i]->name) - 1] = '\0';
+            fgets(p[i]->weight, 100, fp);
+            p[i]->weight[strlen(p[i]->weight) - 1] = '\0';
+            fgets(p[i]->exp, 10000, fp);
+            p[i]->exp[strlen(p[i]->exp) - 1] = '\0';
+            fscanf(fp, "%d %d\n", &p[i]->price, &p[i]->deliv);
+        }
+        fclose(fp);
+        printf("=> 로딩 성공!\n");
+
+#ifdef DEBUG
+    printf("\n[ 변수값 확인- DEBUG MODE ]\n");
+    printf("로딩된 상품 개수: %d\n\n", i);
+#endif
+
+    } else {
+        printf("=> 파일 없음\n\n");
+    }
+    return i;
+}
+
 void saveData(Product *p[], int count) {// FILE에 제품 목록을 저장하는 함수
     FILE *fp;
     fp = fopen("product.txt", "wt");
