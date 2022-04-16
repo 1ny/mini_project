@@ -38,6 +38,19 @@ void searchProduct(Product *p[], int count) { // 제품을 검색하는 함수; 
                 scnt++;
             }
         }
+    } else if(kind == 3) {   // 제품 설명 검색
+        printf("검색할 제품설명은? ");
+        scanf("%s", search);
+
+        printf("================================\n");
+        for(int i=0; i<count; i++) {
+            if(p[i] == NULL) continue;
+            if(strstr(p[i]->exp, search)) {
+                printf("%2d ", i+1);
+                readProduct(*p[i]);
+                scnt++;
+            }
+        }
     }
     if(scnt == 0) printf("=> 검색된 데이터 없음!");
     printf("\n");
