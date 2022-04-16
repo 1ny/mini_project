@@ -25,8 +25,20 @@ void searchProduct(Product *p[], int count) { // 제품을 검색하는 함수; 
                 scnt++;
             }
         }
-    }
+    } else if(kind == 2) {  // 제품 배송방법 검색
+        printf("검색할 배송방법은? ");
+        scanf("%d", &del);
 
+        printf("================================\n");
+        for(int i=0; i<count; i++) {
+            if(p[i] == NULL) continue;
+            if(p[i]->deliv == del) {
+                printf("%2d ", i+1);
+                readProduct(*p[i]);
+                scnt++;
+            }
+        }
+    }
     if(scnt == 0) printf("=> 검색된 데이터 없음!");
     printf("\n");
 }
