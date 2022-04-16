@@ -26,6 +26,7 @@ void searchProduct(Product *p[], int count) { // 제품을 검색하는 함수; 
             }
         }
     }
+
     if(scnt == 0) printf("=> 검색된 데이터 없음!");
     printf("\n");
 }
