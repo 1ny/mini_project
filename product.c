@@ -2,6 +2,23 @@
 #include <string.h>
 #include <stdlib.h>
 #include "product.h"
+void saveData(Product *p[], int count) {// FILE에 제품 목록을 저장하는 함수
+    FILE *fp;
+    fp = fopen("product.txt", "wt");
+
+    for(int i=0; i<count; i++) {
+        if(p[i]->price == -1) continue;
+        fprintf(fp, "%s\n%s\n%s\n%d\n%d\n\n", p[i]->name, p[i]->weight, p[i]->exp, p[i]->price, p[i]->deliv);
+    }
+
+    fclose(fp);
+#ifdef DEBUG
+    printf("\n[ 확인할 변수- DEBUG MODE ]\n");
+    printf("저장할 상품 개수(count): %d\n\n", count);
+#endif
+
+    printf("=> 저장됨!\n");
+}
 
 int loadData(Product *p[]) {    // FILE에 저장된 제품 목록을 불러오는 함수; txt파일이 없을 경우 '파일 없음' 출력
     int i = 0;
