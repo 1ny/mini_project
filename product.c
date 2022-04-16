@@ -12,10 +12,6 @@ void saveData(Product *p[], int count) {// FILE에 제품 목록을 저장하는
     }
 
     fclose(fp);
-#ifdef DEBUG
-    printf("\n[ 확인할 변수- DEBUG MODE ]\n");
-    printf("저장할 상품 개수(count): %d\n\n", count);
-#endif
 
     printf("=> 저장됨!\n");
 }
