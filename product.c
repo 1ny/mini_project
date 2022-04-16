@@ -24,10 +24,6 @@ int loadData(Product *p[]) {    // FILE에 저장된 제품 목록을 불러오�
         fclose(fp);
         printf("=> 로딩 성공!\n");
 
-#ifdef DEBUG
-    printf("\n[ 변수값 확인- DEBUG MODE ]\n");
-    printf("로딩된 상품 개수: %d\n\n", i);
-#endif
 
     } else {
         printf("=> 파일 없음\n\n");
