@@ -18,4 +18,3 @@ void searchProduct(Product *p[], int count); // 제품 이름 검색
 void saveData(Product *p[], int count);   // FILE 저장
 int loadData(Product *p[]); // FILE 불러오기
 int selectMenu(); // select num 함수
-
